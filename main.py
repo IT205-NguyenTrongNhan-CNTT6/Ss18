@@ -1,5 +1,5 @@
 
-def get_validate_input(promt:"str",input_type : str = "string"):
+def get_validate_input(promt:str,input_type : str = "string"):
     while True:
         user_input = input(promt)
         if not user_input:
@@ -23,11 +23,14 @@ def show_inventory(inventory):
         return
 
     print("----Danh Sách Tồn Kho----")
-    print(f"{'ID':<10}| {'Tên Hàng Hóa':<15}| {'Số lượng tôn':<15}")
+    print(f"{'ID':<10}| {'Tên Hàng Hóa':<15}| {'Số lượng tồn':<15}")
     for items in inventory:
         print(f"{items.get('id'):<12}| {items.get('name'):<17}| {items.get('quantity'):<17}")
 
 def add_item(inventory):
+    if not inventory:
+        print("Dữ liệu danh sách rỗng")
+        return
     while True:
         print("---Nhập hàng hóa mới---")
         add_id = get_validate_input("Nhập mã hàng hóa: ")
@@ -49,6 +52,9 @@ def add_item(inventory):
             break
 
 def upd_inventory(inventory):
+    if not inventory:
+        print("Dữ liệu danh sách rỗng")
+        return
     while True:
         print("---Cập Nhật Số Lượng Tồn Kho---")
         upd_id = get_validate_input("Nhập mã hàng hóa: ")
@@ -64,7 +70,6 @@ def upd_inventory(inventory):
 
 def menu():
     print("="*25)
-
     print("Quản Lý Kho Hàng - Grocery Store")
     print("="*25)
     print("1.Xem danh sách hàng tồn kho\n"+
